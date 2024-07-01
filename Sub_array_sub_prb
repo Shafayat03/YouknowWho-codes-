@@ -1,0 +1,57 @@
+
+
+/**
+you are given  n <= 20 numbers for each from 1 up to 10^8  . Is there a subset with a sum equal to a given goal s where 1 <= s <= 10^9 ? Output "Yes" or "No". 
+
+
+
+Input:
+5 13
+1 2 5 7 7
+Output:
+Yes
+
+Input:
+5 11
+1 2 5 7 7
+Output:
+No
+
+*//
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void sub(){
+    ll n,s;
+    cin >> n >> s;
+    
+    ll arr[n];
+    for(ll i = 0; i < n;i++){
+        cin >> arr[i];
+    }
+    bool ok = false;
+    for( ll mask = 0; mask < (1 << n); mask++){
+        ll sum = 0;
+        for(ll i = 0; i < n;i++){
+            if((mask >> i) & i){
+                 sum += arr[i];
+            }
+        }
+        if(sum == s){
+            ok = true;
+            break;
+        }
+    }
+    if(ok){
+        cout <<"Yes\n";
+    }
+    else cout <<"No\n";
+}
+int main()
+{
+    sub();
+    
+    
+}
